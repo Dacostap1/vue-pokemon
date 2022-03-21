@@ -1,9 +1,4 @@
-/* const getPokemons = ()=> {
-    const pokemonsArray = Array.from (Array(650))
-    console.log(pokemonsArray)
-    return pokemonsArray.map((_, index) => index+1)
-}
-*/
+import pokemonApi from "@/api/pokemonApi";
 
 const randomPoke = () => {
   let randomPokemons = [];
@@ -17,8 +12,24 @@ const randomPoke = () => {
   return randomPokemons;
 };
 
-export const getPokemonOptions = () => {
+export const getPokemonOptions = async () => {
   const [a, b, c, d] = randomPoke();
+
+  
   console.log(a, b, c, d);
-  //getPokemons()
+
+  const promiseArray = [
+    pokemonApi.get(`/${a}`),
+    pokemonApi.get(`/${b}`),
+    pokemonApi.get(`/${c}`),
+    pokemonApi.get(`/${d}`),
+  ]
+  const res = await Promise.all(promiseArray)
+
+  return res.map( (r) => ({
+    id: r.data.id,
+    name: r.data.name,
+  }))
+
+ 
 };
