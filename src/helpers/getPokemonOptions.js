@@ -1,6 +1,6 @@
 import pokemonApi from "@/api/pokemonApi";
 
-const randomPoke = () => {
+export const randomPoke = () => {
   let randomPokemons = [];
 
   while (randomPokemons.length < 4) {
@@ -15,7 +15,6 @@ const randomPoke = () => {
 export const getPokemonOptions = async () => {
   const [a, b, c, d] = randomPoke();
 
-  
   console.log(a, b, c, d);
 
   const promiseArray = [
@@ -23,13 +22,11 @@ export const getPokemonOptions = async () => {
     pokemonApi.get(`/${b}`),
     pokemonApi.get(`/${c}`),
     pokemonApi.get(`/${d}`),
-  ]
-  const res = await Promise.all(promiseArray)
+  ];
+  const res = await Promise.all(promiseArray);
 
-  return res.map( (r) => ({
+  return res.map((r) => ({
     id: r.data.id,
     name: r.data.name,
-  }))
-
- 
+  }));
 };
