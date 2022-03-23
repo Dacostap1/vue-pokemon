@@ -39,4 +39,29 @@ describe("Test PokemonPage", () => {
 
     expect(wrapper.html()).toMatchSnapshot();
   });
+
+  test("debe de mostrar los componentes de PokemonPicture y PokemonOptions", () => {
+    const wrapper = shallowMount(PokemonPage, {
+      data() {
+        return {
+          pokemonList: mockPokemons,
+          pokemon: mockPokemons[0],
+          showPokemon: false,
+          message: null,
+          showAnswer: false,
+        };
+      },
+    });
+
+    //console.log(wrapper.html());
+
+    const image = wrapper.find("pokemon-image-stub");
+    const options = wrapper.find("pokemon-options-stub");
+
+    expect(image.exists()).toBeTruthy();
+    expect(options.exists()).toBeTruthy();
+
+    expect(image.attributes("pokemonid")).toBe("5");
+    expect(options.attributes("pokemonlist").exists).toBeTruthy;
+  });
 });
