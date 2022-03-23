@@ -64,4 +64,29 @@ describe("Test PokemonPage", () => {
     expect(image.attributes("pokemonid")).toBe("5");
     expect(options.attributes("pokemonlist").exists).toBeTruthy;
   });
+
+  test("test pokemonSelected in vm", async () => {
+    const wrapper = shallowMount(PokemonPage, {
+      data() {
+        return {
+          pokemonList: mockPokemons,
+          pokemon: mockPokemons[0],
+          showPokemon: false,
+          message: null,
+          showAnswer: false,
+        };
+      },
+    });
+
+    //await para esperar que actualice el virtul dom
+    await wrapper.vm.pokemonSelected(5);
+
+    //wrapper find buscamos en el doom renderizado
+    //wapper.vm buscamos en el virtual dom de vue
+    expect(wrapper.find("h2").exists).toBeTruthy();
+    expect(wrapper.vm.showPokemon).toBe(true);
+    expect(wrapper.find("h2").text()).toBe(
+      `Correcto, el pokemon era ${mockPokemons[0].name}`
+    );
+  });
 });
