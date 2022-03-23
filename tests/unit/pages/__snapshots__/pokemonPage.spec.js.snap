@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test PokemonPage debe de hacer match con el snapshot 1`] = `
+<div>
+  <h1>Espere por favor..</h1>
+</div>
+`;
+
+exports[`Test PokemonPage debe de hacer match con el snapshot uego de cargar los pokemons 1`] = `
+<div>
+  <div class="pokemon-container"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/5.svg" alt="picture" class="hidden-pokemon">
+    <!--v-if-->
+  </div>
+  <div class="options-container">
+    <ul>
+      <li>pikachu</li>
+      <li>charmander</li>
+      <li>venusaur</li>
+      <li>new</li>
+    </ul>
+  </div>
+  <!--v-if-->
+</div>
+`;
